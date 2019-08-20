@@ -35,7 +35,7 @@ for i in range(0,n):
     ## f2 = 0.07
     ## f3 = 0.07
     ## f4 = 0.01
-    p = [0.85, 0.07, 0.07, 0.01]
+    p = 
 
     ##dato = f1, f2, f3, f4
     ##p = probabilidad
