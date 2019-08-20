@@ -1,104 +1,120 @@
+
+########################################
+## Universidad del Valle de Guatemala ##
+## Autores:                           ##
+##      Andrea Cordon                 ##
+##      Michelle Bloomfield           ##
+########################################
+
 import random
-
-primero = 0.05
-x =[]
-
-x.append(primero)
-
-def generador1(x_anterior):
-    xn = (5**5*x_anterior)%(2**35-1)
-    return xn
-
-def generador2(x_anterior):
-    xn = ((7**5 * (x_anterior)) % (2**31 -1))
-    return xn
+import matplotlib.pyplot as plt
+import time
 
 
-def count(x):
-    x1, x2, x3, x4, x5, x6, x7, x8, x9 ,x10 = 0
-    for i in x:
-        if(x[i]<= 0.1):
+
+class Generadores:
+    ## Generador 1: x = 5^5* xn-1 mod(2^35 -1)
+    def generador1(self, seed, iteraciones):
+        x = []
+        x.append(seed)
+        for i in range(1,iteraciones):
+            y = ((5**5*(x[i-1]))%(2**35-1)) %1
+            x.append(y)
+        return x
+
+    ## Generador 2: x = 7^5* xn-1 mod(2^31 -1)          
+    def generador2(self, seed, iteraciones):
+        x = []
+        x.append(seed)
+        for i in range(1,iteraciones):
+            y = (7**5 * (x[i-1])) % (2**31 -1)% 1
+            x.append(y%1)
+        return x
+
+    ## Generador 3:  x = math.random()
+    def generador3(self, iteraciones):
+        x = []
+        for i in range(1, iteraciones):
+            x.append(random.random())
+        return x
+
+    ##Cuenta en el rango que se especifique
+    def count(self, lista, inf, sup): 
+        cuantos = 0 
+        for x in lista: 
+            if x>= inf and x<= sup: 
+                cuantos+= 1 
+        return cuantos
+
+def main():
+
+    generador = Generadores()
+    while(True):
+        print("Generador 1: x = 5^5* xn-1 mod(2^35 -1)")
+        print("Generador 2: x = 7^5* xn-1 mod(2^31 -1)")
+        print("Generador 3:  x = math.random()")
+        ingreso = input("Ingrese que generador quiere realizar (1,2 o 3): ")
+
+        if(ingreso == "1"):
+            lista_1 = []
+            lista_2 = []
+            lista_3 = []
             
-    return x
+            inf = 0
+            sup = 0.1
+            
+            itera_1= generador.generador1(0.05, 100)
+            itera_2 = generador.generador1(0.05, 5000)
+            itera_3 = generador.generador1(0.05, 100000)
 
-    
-########################################### GENERADOR 1  ###########################################
-while(True):
+            for x in range(0, 10):
+                lista_1.append(generador.count(itera_1, inf, sup))
+                lista_2.append(generador.count(itera_2, inf, sup))
+                lista_3.append(generador.count(itera_3, inf,sup))
+                inf = inf + 0.1
+                sup = sup + 0.1
+            print(lista_2)
+            
 
-    print("Generador 1: x = 5^5* xn-1 mod(2^35 -1)")
-    print("Generador 2: x = 7^5* xn-1 mod(2^31 -1)")
-    print("Generador 3:  x = math.random()")
-    print("1. Generador 1 - 100 vueltas")
-    print("2. Generador 1 - 5000 vueltas")
-    print("3. Generador 1 - 10000 vueltas")
-    print("4. Generador 2 - 100 vueltas")
-    print("5. Generador 2 - 5000 vueltas")
-    print("6. Generador 2 - 10000 vueltas")
-    print("7. Generador 3 - 100 vueltas")
-    print("8. Generador 3 - 5000 vueltas")
-    print("9. Generador 3 - 10000 vueltas")
-    print("")
-    ingreso = input("Ingrese el numero que desea realizar")
+        if(ingreso == "2"):
+            lista_1 = []
+            lista_2 = []
+            lista_3 = []
+            
+            inf = 0
+            sup = 0.1
+            
+            itera_1= generador.generador2(0.05, 100)
+            itera_2 = generador.generador2(0.05, 5000)
+            itera_3 = generador.generador2(0.05, 100000)
 
+            for x in range(0, 10):
+                lista_1.append(generador.count(itera_1, inf, sup))
+                lista_2.append(generador.count(itera_2, inf, sup))
+                lista_3.append(generador.count(itera_3, inf,sup))
+                inf = inf + 0.1
+                sup = sup + 0.1
 
-    if(ingreso == '1'):
-        ##Generador 1: para 100 corridas
+        if(ingreso == "3"):
+            lista_1 = []
+            lista_2 = []
+            lista_3 = []
+            
+            inf = 0
+            sup = 0.1
+            
+            itera_1= generador.generador3( 100)
+            itera_2 = generador.generador3(5000)
+            itera_3 = generador.generador3(100000)
 
-        for i in range(1,100):
-            y = generador1(x[i-1])%1
-            x.append(y)
-        print(x)
-
-    if(ingreso == 2):
-        ##Generador 1: para 5000 corridas
-
-        for i in range(1,5000):
-            y = generador1(x[i-1])%1
-            x.append(y)
-
-    if(ingreso == 3):
-        ##Generador 1: para 100000 corridas
-
-        for i in range(1,100000):
-            y = generador1(x[i-1])%1
-            x.append(y)
-
-########################################### GENERADOR 2  ###########################################
-        ##Generador 2: para 100 corridas
-    if(ingreso == '4'):
-        for i in range(1,100):
-            y = generador2(x[i-1])%1
-            x.append(y)
-        print(x)
-
-    if(ingreso == 5):
-        ##Generador 2: para 5000 corridas
-
-        for i in range(1,5000):
-            y = generador2(x[i-1])%1
-            x.append(y)
-
-    if(ingreso == 6):
-        ##Generador 2: para 100000 corridas
-
-        for i in range(1,100000):
-            y = generador2(x[i-1])%1
-            x.append(y)
+            for x in range(0, 10):
+                lista_1.append(generador.count(itera_1, inf, sup))
+                lista_2.append(generador.count(itera_2, inf, sup))
+                lista_3.append(generador.count(itera_3, inf,sup))
+                inf = inf + 0.1
+                sup = sup + 0.1
 
 
-########################################### GENERADOR 3  ###########################################
-    if(ingreso == 7):
-        for i in range(1,100):
-            x.append(random.randrange(1))
-            print(x)
 
-    if(ingreso == 8):
-        for i in range(1,500):
-            x.append(random.randrange(1))
-            print(x)
-
-
-    if(ingreso == 9):
-        for i in range(1,100000):
-            x.append(random.randrange(1))
-            print(x)
+if __name__ == "__main__":
+    main()
