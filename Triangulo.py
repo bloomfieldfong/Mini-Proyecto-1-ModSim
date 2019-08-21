@@ -53,7 +53,7 @@ class Triangulo:
     
 def main():
     triangulo = Triangulo()
-    probabilidades = [0.33, 0.33, 0.33]
+    probabilidades = [0.33, 0.33, 0.34s]
     choices = triangulo.dibujar(probabilidades)
     plt.plot(choices[0], choices[1], ".")
     plt.show()

@@ -50,6 +50,8 @@ class Generadores:
         if generador == 2:
             for x in lista:
                 listaNueva.append((x/(2**31-1)))
+        if generador == 3:
+            listaNueva = lista
         for x in listaNueva: 
             if x>= inf and x<= sup: 
                 cuantos+= 1 
@@ -61,10 +63,9 @@ class Generadores:
         x = 0
         
         for i in lista:
-            x = (x + int(i))
+            x = x + int(i)
             
         for i in range(0,10):
-            
             print(str(inf)+"-"+str(sup)+" "+str(int(lista[i]*porcentaje)*"*")+" " +str(round(((lista[i]/(x))*100),2))+ "% - Total: " + str(lista[i]))
             inf = round((inf + 0.1), 2)
             sup = round((sup + 0.1),2)
@@ -149,10 +150,11 @@ def main():
             itera_2 = generador.generador3(5000)
             itera_3 = generador.generador3(100000)
 
+
             for x in range(0, 10):
-                lista_1.append(generador.count(itera_1, inf, sup))
-                lista_2.append(generador.count(itera_2, inf, sup))
-                lista_3.append(generador.count(itera_3, inf,sup))
+                lista_1.append(generador.count(itera_1, inf, sup,3))
+                lista_2.append(generador.count(itera_2, inf, sup,3))
+                lista_3.append(generador.count(itera_3, inf,sup,3))
                 inf = inf + 0.1
                 sup = sup + 0.1
          
