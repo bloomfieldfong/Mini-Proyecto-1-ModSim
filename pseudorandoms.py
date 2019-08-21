@@ -8,7 +8,7 @@
 
 import random
 import matplotlib.pyplot as plt
-import time
+import datetime, time
 
 
 
@@ -18,7 +18,7 @@ class Generadores:
         x = []
         x.append(seed)
         for i in range(1,iteraciones):
-            y = ((5**5*(x[i-1]))%(2**35-1)) %1
+            y = ((5**5*(x[i-1]))%(2**35-1)) 
             x.append(y)
         return x
 
@@ -27,8 +27,9 @@ class Generadores:
         x = []
         x.append(seed)
         for i in range(1,iteraciones):
-            y = (7**5 * (x[i-1])) % (2**31 -1)% 1
-            x.append(y%1)
+            y = (7**5 * (x[i-1])) % (2**31 -1)
+            x.append(y)
+
         return x
 
     ## Generador 3:  x = math.random()
@@ -39,17 +40,41 @@ class Generadores:
         return x
 
     ##Cuenta en el rango que se especifique
-    def count(self, lista, inf, sup): 
-        cuantos = 0 
-        for x in lista: 
+    def count(self, lista, inf, sup, generador): 
+        cuantos = 0
+        listaNueva = []
+
+        if generador == 1:
+            for x in lista:
+                listaNueva.append((x/(2**35-1)))
+        if generador == 2:
+            for x in lista:
+                listaNueva.append((x/(2**31-1)))
+        for x in listaNueva: 
             if x>= inf and x<= sup: 
                 cuantos+= 1 
         return cuantos
 
+    def graficar(self,lista, porcentaje):
+        inf = 0.0
+        sup = 0.1
+        x = 0
+        
+        for i in lista:
+            x = (x + int(i))
+            
+        for i in range(0,10):
+            
+            print(str(inf)+"-"+str(sup)+" "+str(int(lista[i]*porcentaje)*"*")+" " +str(round(((lista[i]/(x))*100),2))+ "% - Total: " + str(lista[i]))
+            inf = round((inf + 0.1), 2)
+            sup = round((sup + 0.1),2)
+
 def main():
+
 
     generador = Generadores()
     while(True):
+
         print("Generador 1: x = 5^5* xn-1 mod(2^35 -1)")
         print("Generador 2: x = 7^5* xn-1 mod(2^31 -1)")
         print("Generador 3:  x = math.random()")
@@ -63,17 +88,24 @@ def main():
             inf = 0
             sup = 0.1
             
-            itera_1= generador.generador1(0.05, 100)
-            itera_2 = generador.generador1(0.05, 5000)
-            itera_3 = generador.generador1(0.05, 100000)
+            itera_1= generador.generador1(time.time(), 100)
+            itera_2 = generador.generador1(time.time(), 5000)
+            itera_3 = generador.generador1(time.time(), 100000)
 
             for x in range(0, 10):
-                lista_1.append(generador.count(itera_1, inf, sup))
-                lista_2.append(generador.count(itera_2, inf, sup))
-                lista_3.append(generador.count(itera_3, inf,sup))
+                lista_1.append(generador.count(itera_1, inf, sup,1))
+                lista_2.append(generador.count(itera_2, inf, sup,1))
+                lista_3.append(generador.count(itera_3, inf,sup,1))
                 inf = inf + 0.1
                 sup = sup + 0.1
-            print(lista_2)
+          
+            print("\nGenerador 1: 100 Corridas\n")
+            generador.graficar(lista_1, 2)
+            print("\nGenerador 1: 5000 Corridas\n")
+            generador.graficar(lista_2,0.1)
+            print("\nGenerador 1: 100000 Corridas\n")
+            generador.graficar(lista_3,0.005)
+           
             
 
         if(ingreso == "2"):
@@ -84,16 +116,26 @@ def main():
             inf = 0
             sup = 0.1
             
-            itera_1= generador.generador2(0.05, 100)
-            itera_2 = generador.generador2(0.05, 5000)
-            itera_3 = generador.generador2(0.05, 100000)
+            itera_1= generador.generador2(time.time(), 100)
+            itera_2 = generador.generador2(time.time(), 5000)
+            itera_3 = generador.generador2(time.time(), 100000)
 
             for x in range(0, 10):
-                lista_1.append(generador.count(itera_1, inf, sup))
-                lista_2.append(generador.count(itera_2, inf, sup))
-                lista_3.append(generador.count(itera_3, inf,sup))
+                lista_1.append(generador.count(itera_1, inf, sup,2))
+                lista_2.append(generador.count(itera_2, inf, sup,2))
+                lista_3.append(generador.count(itera_3, inf,sup,2))
                 inf = inf + 0.1
                 sup = sup + 0.1
+
+            print("\nGenerador 2: 100 Corridas\n")
+            generador.graficar(lista_1, 2)
+            print("\nGenerador 2: 5000 Corridas\n")
+            generador.graficar(lista_2, 0.1)
+            print("\nGenerador 2: 100000 Corridas\n")
+            generador.graficar(lista_3, 0.005)
+           
+            
+
 
         if(ingreso == "3"):
             lista_1 = []
@@ -113,6 +155,15 @@ def main():
                 lista_3.append(generador.count(itera_3, inf,sup))
                 inf = inf + 0.1
                 sup = sup + 0.1
+         
+            print("\nGenerador 3: 100 Corridas\n")
+            generador.graficar(lista_1, 2)
+            print("\nGenerador 3: 5000 Corridas\n")
+            generador.graficar(lista_2, 0.1)
+            print("\nGenerador 3: 100000 Corridas\n")
+            generador.graficar(lista_3, 0.005)
+           
+            
 
 
 

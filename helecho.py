@@ -57,7 +57,7 @@ class Helecho:
     
 def main():
     helecho = Helecho()
-    probabilidades = [0.85, 0.07, 0.07, 0.01]
+    probabilidades = [0.25, 0.25, 0.24, 0.25]
     choices = helecho.dibujar(probabilidades)
     plt.plot(choices[0], choices[1], ".")
     plt.show()
