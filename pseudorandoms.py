@@ -75,24 +75,28 @@ def main():
 
     generador = Generadores()
     while(True):
-
         print("Generador 1: x = 5^5* xn-1 mod(2^35 -1)")
         print("Generador 2: x = 7^5* xn-1 mod(2^31 -1)")
         print("Generador 3:  x = math.random()")
         ingreso = input("Ingrese que generador quiere realizar (1,2 o 3): ")
 
         if(ingreso == "1"):
+
+            ##Lista de numeros contados de 0 a 1
             lista_1 = []
             lista_2 = []
             lista_3 = []
             
+            ##superior e inferior
             inf = 0
             sup = 0.1
             
+            ##Lista de iteracionn con un seed de time.time
             itera_1= generador.generador1(time.time(), 100)
             itera_2 = generador.generador1(time.time(), 5000)
             itera_3 = generador.generador1(time.time(), 100000)
 
+            ##Se itera para cada lista y cuenta por cada .1
             for x in range(0, 10):
                 lista_1.append(generador.count(itera_1, inf, sup,1))
                 lista_2.append(generador.count(itera_2, inf, sup,1))
@@ -100,6 +104,7 @@ def main():
                 inf = inf + 0.1
                 sup = sup + 0.1
           
+            ##Graficar cada lsita
             print("\nGenerador 1: 100 Corridas\n")
             generador.graficar(lista_1, 2)
             print("\nGenerador 1: 5000 Corridas\n")
@@ -110,17 +115,23 @@ def main():
             
 
         if(ingreso == "2"):
+
+            ##Lista de numeros contados de 0 a 1
             lista_1 = []
             lista_2 = []
             lista_3 = []
             
+            ##superior e inferior
             inf = 0
             sup = 0.1
             
+            ##Lista de iteracionn con un seed de time.time
             itera_1= generador.generador2(time.time(), 100)
             itera_2 = generador.generador2(time.time(), 5000)
             itera_3 = generador.generador2(time.time(), 100000)
 
+
+            ##Se itera para cada lista y cuenta por cada .1
             for x in range(0, 10):
                 lista_1.append(generador.count(itera_1, inf, sup,2))
                 lista_2.append(generador.count(itera_2, inf, sup,2))
@@ -128,6 +139,7 @@ def main():
                 inf = inf + 0.1
                 sup = sup + 0.1
 
+            ##Graficar cada lsita
             print("\nGenerador 2: 100 Corridas\n")
             generador.graficar(lista_1, 2)
             print("\nGenerador 2: 5000 Corridas\n")
@@ -139,18 +151,22 @@ def main():
 
 
         if(ingreso == "3"):
+
+            ##Lista de numeros contados de 0 a 1
             lista_1 = []
             lista_2 = []
             lista_3 = []
             
+             ##superior e inferior
             inf = 0
             sup = 0.1
             
+            ##Lista de iteracionn con un seed de time.time
             itera_1= generador.generador3( 100)
             itera_2 = generador.generador3(5000)
             itera_3 = generador.generador3(100000)
 
-
+            ##Se itera para cada lista y cuenta por cada .1
             for x in range(0, 10):
                 lista_1.append(generador.count(itera_1, inf, sup,3))
                 lista_2.append(generador.count(itera_2, inf, sup,3))
@@ -158,6 +174,7 @@ def main():
                 inf = inf + 0.1
                 sup = sup + 0.1
          
+            ##Graficar
             print("\nGenerador 3: 100 Corridas\n")
             generador.graficar(lista_1, 2)
             print("\nGenerador 3: 5000 Corridas\n")
