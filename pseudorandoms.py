@@ -107,7 +107,7 @@ def main():
           
             ##Graficar cada lsita
             print("\nGenerador 1: 100 Corridas\n")
-            generador.graficar(lista_1, 2)
+            generador.graficar(lista_1, 4)
             print("\nGenerador 1: 5000 Corridas\n")
             generador.graficar(lista_2,0.1)
             print("\nGenerador 1: 100000 Corridas\n")
@@ -142,7 +142,7 @@ def main():
 
             ##Graficar cada lsita
             print("\nGenerador 2: 100 Corridas\n")
-            generador.graficar(lista_1, 2)
+            generador.graficar(lista_1, 4)
             print("\nGenerador 2: 5000 Corridas\n")
             generador.graficar(lista_2, 0.1)
             print("\nGenerador 2: 100000 Corridas\n")
@@ -177,7 +177,7 @@ def main():
          
             ##Graficar
             print("\nGenerador 3: 100 Corridas\n")
-            generador.graficar(lista_1, 2)
+            generador.graficar(lista_1, 4)
             print("\nGenerador 3: 5000 Corridas\n")
             generador.graficar(lista_2, 0.1)
             print("\nGenerador 3: 100000 Corridas\n")

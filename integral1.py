@@ -30,6 +30,8 @@ def main():
     print("Resultado con 10,000 iteraciones: ", integral1.monte_carlo(10000))
     print("Resultado con 1,000,000 iteraciones: ", integral1.monte_carlo(1000000))
 
+    
+
 
 if __name__== '__main__':
     main()
