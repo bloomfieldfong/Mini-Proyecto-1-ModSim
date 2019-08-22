@@ -55,7 +55,7 @@ def main():
     triangulo = Triangulo()
     probabilidades = [0.33, 0.33, 0.34]
     choices = triangulo.dibujar(probabilidades)
-    plt.plot(choices[0], choices[1], ".")
+    plt.plot(choices[0], choices[1], ".", color = "y")
     plt.show()
 
 if __name__ == "__main__":

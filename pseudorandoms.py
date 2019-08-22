@@ -72,9 +72,10 @@ class Generadores:
 
 def main():
 
+    salida = True
 
     generador = Generadores()
-    while(True):
+    while salida == True:
         print("Generador 1: x = 5^5* xn-1 mod(2^35 -1)")
         print("Generador 2: x = 7^5* xn-1 mod(2^31 -1)")
         print("Generador 3:  x = math.random()")
@@ -181,7 +182,9 @@ def main():
             generador.graficar(lista_2, 0.1)
             print("\nGenerador 3: 100000 Corridas\n")
             generador.graficar(lista_3, 0.005)
-           
+
+        if(ingreso > "3"):
+            salida = False           
             
 
 
